@@ -2,10 +2,9 @@ package pages;
 
 import org.openqa.selenium.WebDriver;
 
-public class ContasListadas {
-    private WebDriver navegar;
+public class ContasListadas extends BasePage {
 
     public ContasListadas(WebDriver navegar) {
-        this.navegar = navegar;
+        super(navegar);
     }
 }

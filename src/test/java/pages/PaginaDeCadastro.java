@@ -6,11 +6,10 @@ import org.openqa.selenium.WebElement;
 
 import static org.junit.Assert.assertEquals;
 
-public class PaginaDeCadastro {
-    private WebDriver navegar;
+public class PaginaDeCadastro extends BasePage {
 
     public PaginaDeCadastro(WebDriver navegar) {
-        this.navegar = navegar;
+        super(navegar);
     }
 
     public PaginaDeCadastro escreverNome(String nome){

@@ -3,11 +3,11 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class CriarMovimentacao {
-    private WebDriver navegar;
+public class CriarMovimentacao extends BasePage {
 
-    public CriarMovimentacao (WebDriver navegar) {
-        this.navegar = navegar;
+
+    public CriarMovimentacao(WebDriver navegar) {
+        super(navegar);
     }
 
     public CriarMovimentacao dataDePagamento(String data){

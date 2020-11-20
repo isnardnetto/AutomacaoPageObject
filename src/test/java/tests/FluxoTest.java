@@ -23,7 +23,7 @@ public class FluxoTest {
     public void testNovoUsuario() {
             new PaginaDeLogin(navegar) // colocar a primeira pagina da aplicação
                     .clicarNoBotaoNovoUsuario()
-                    .cadastroResumido("oladipo","oladipo@gmail.com","12345")
+                    .cadastroResumido("oladipoo","oladipoo@gmail.com","12345")
                     .clicarNoBotaoCadastrarSucesso();
     } //1
 
@@ -115,7 +115,7 @@ public class FluxoTest {
 
     @After
     public void tearDown(){
-       // navegar.quit();
+        navegar.quit();
     }
 }
 

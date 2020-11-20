@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="BvTest" />
         <module name="BVTesteSenhorBarriga-main" />
+        <module name="AutomacaoPageObject" />
       </profile>
     </annotationProcessing>
   </component>

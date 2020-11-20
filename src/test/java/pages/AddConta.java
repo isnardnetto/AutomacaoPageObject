@@ -3,12 +3,13 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class AddConta {
-    private WebDriver navegar;
+public class AddConta extends BasePage { // essa classe extende de basePage o navegador
+
 
     public AddConta(WebDriver navegar) {
-        this.navegar = navegar;
+        super(navegar);
     }
+
     public AddConta escreverConta(String contaTeste){
         navegar.findElement(By.id("nome")).sendKeys(contaTeste);
 

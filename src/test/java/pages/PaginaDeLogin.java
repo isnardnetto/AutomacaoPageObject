@@ -6,15 +6,14 @@ import org.openqa.selenium.WebElement;
 
 import static org.junit.Assert.assertEquals;
 
-public class PaginaDeLogin {
+public class PaginaDeLogin extends BasePage {
 
-        private WebDriver navegar;
 
-        public PaginaDeLogin(WebDriver navegar) {
-            this.navegar = navegar;
-        }
+    public PaginaDeLogin(WebDriver navegar) {
+        super(navegar);
+    }
 
-        public PaginaDeCadastro clicarNoBotaoNovoUsuario() {
+    public PaginaDeCadastro clicarNoBotaoNovoUsuario() {
             navegar.findElement(By.linkText("Novo usuário?")).click();
 
             return new PaginaDeCadastro(navegar);

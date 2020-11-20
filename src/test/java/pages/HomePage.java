@@ -3,11 +3,11 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class HomePage {
-    private WebDriver navegar;
+public class HomePage extends BasePage {
+
 
     public HomePage(WebDriver navegar) {
-        this.navegar = navegar;
+        super(navegar);
     }
 
     public HomePage AbrirConta(){
