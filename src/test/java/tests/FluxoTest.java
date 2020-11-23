@@ -9,7 +9,7 @@ import org.openqa.selenium.WebElement;
 import pages.PaginaDeLogin;
 import suporte.Web;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class FluxoTest {
     private WebDriver navegar;
@@ -21,95 +21,126 @@ public class FluxoTest {
 
     @Test
     public void testNovoUsuario() {
-            new PaginaDeLogin(navegar) // colocar a primeira pagina da aplicação
+           String validacaoNovoUsuario = new PaginaDeLogin(navegar) // colocar a primeira pagina da aplicação
                     .clicarNoBotaoNovoUsuario()
-                    .cadastroResumido("oladipoo","oladipoo@gmail.com","12345")
-                    .clicarNoBotaoCadastrarSucesso();
+                    .cadastroResumido("oladipuyooHYoo","oladipooHYHoooo@gmail.com","12345")
+                    .clicarNoBotaoCadastrarSucesso()
+                    .ValidacaoTextoTesteNovoUsuario();
+
+           assertEquals("Usuário inserido com sucesso",validacaoNovoUsuario);
     } //1
 
     @Test
     public void testNovoUsuarioJaCadastrado(){ // deu errado no assert
-        new PaginaDeLogin(navegar)
+        String ValidacaoUsuarioJaUltilizado = new PaginaDeLogin(navegar)
                 .clicarNoBotaoNovoUsuario()
                 .cadastroResumido("Lukab","doncicd@gmail.com","12345")
-                .clicarNoBotaoCadastrarSucesso();
+                .clicarNoBotaoCadastrarErro()
+                .ValidacaoTextoTesteUsuarioJaUltilizado();
+
+        assertEquals("Endereço de email já utilizado",ValidacaoUsuarioJaUltilizado);
+                ;
     }//2
 
     @Test
     public void testLogin(){
-        new PaginaDeLogin(navegar)
+        String validandoUmUsuarioCadastrado = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gsw")
-                .clicarNoBotaoEntrar();
+                .clicarNoBotaoEntrar()
+                .validandoTextoUsuarioCadastrado();
+
+        assertEquals("Bem vindo, curry!",validandoUmUsuarioCadastrado);
+
     }//3
 
     @Test
     public void testLoginErro(){
-        new PaginaDeLogin(navegar)
+       String senhaErrada = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gswww")
-                .clicarNoBotaoCadastrarErro();
+                .clicarNoBotaoCadastrarErro()
+                .valindandoSenhaErrada();
+
+        assertEquals("Problemas com o login do usuário",senhaErrada);
     }//4
 
     @Test
     public void contasContaDuplicada (){
-        new PaginaDeLogin(navegar)
+      String ContaDuplicada = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gsw")
                 .clicarNoBotaoEntrar()
                 .AbrirConta()
                 .adicionarConta()
-                .escreverConta("Conta01")
-                .clicarBotaoSalvar();
+                .escreverConta("contaTeste3")
+                .clicarBotaoSalvar()
+                .valindandoContaDuplicada();
+
+        assertEquals("Já existe uma conta com esse nome!",ContaDuplicada);
     }//5
 
     @Test
-    public void ExcluirContasEmAberto(){
-        new PaginaDeLogin(navegar)
+    public void ExcluirContasEmAberto(){ //resolver depois problema na conta usada
+        String ValidarContaEmUso  = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gsw")
                 .clicarNoBotaoEntrar()
                 .AbrirConta()
                 .clicarListarConta()
                 .excluirContaEmUso()
+                .ValidarTextoContaEmUso()
                 ;
+
+        assertEquals("Conta em uso na movimentações", ValidarContaEmUso);
     }//6
 
     @Test
     public void CriarMovimetacaoSemDataDePagamentoEmovimentacao() {
-        new PaginaDeLogin(navegar)
+        String SemDataMovimentacao = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gsw")
                 .clicarNoBotaoEntrar()
                 .clicarCriarMovimentacao()
                 .preeencherCamposSemDataMovimentacao("10/10/2020","Receber valor","Dwait","250","tete")
                 .limparTelaDeDataDePagamento()
                 .preeencherCamposSemDataPagamanto("10/10/2020","Mandar valor","Mike Scott","300","tete")
+                .ValidarTextoSemDataDePgtoEmovimentacao()
                 ;
+
+        assertEquals("Data do pagamento é obrigatório", SemDataMovimentacao);
+
     }//7
 
     @Test
     public void CriarMovimetacaoDataInvalida() {
-        new PaginaDeLogin(navegar)
+         String movimetacaoDataInvalida = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gsw")
                 .clicarNoBotaoEntrar()
                 .clicarCriarMovimentacao()
                 .todosOsCamposPreenchidosDataInvalida("10/10/2020","valor","kwai","367","tete","30/30/2085")
+                 .ValidacaoCriarMovimetacaoDataInvalidaa()
                 ;
+
+        assertEquals("Data do pagamento inválida (DD/MM/YYYY)", movimetacaoDataInvalida);
     }//8
 
     @Test
     public void escolhendoUmaContaComDataFutura () {
-        new PaginaDeLogin(navegar)
+        String EscolhendoUmaContaFutura = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gsw")
                 .clicarNoBotaoEntrar()
                 .clicarCriarMovimentacao()
                 .todosOsCamposPreenchidosDataInvalida("01/12/2023","valor","kwai","367","tete","10/12/2020")
+                .validandoTextoEscolhendoUmaContaComDataFutura()
         ;
+        assertEquals("Data da Movimentação deve ser menor ou igual à data atual", EscolhendoUmaContaFutura);
     }//9
 
     @Test
     public void SaindoDaConta () {
-        new PaginaDeLogin(navegar)
-                .loginResumida("curry30@gmail.com","gsw")
-                .clicarNoBotaoEntrar()
+       String textoSaindoDaConta  = new PaginaDeLogin(navegar)
+               .loginResumida("curry30@gmail.com","gsw")
+               .clicarNoBotaoEntrar()
                 .sair()
+                .ValidandoTextoSaindoDaConta()
                 ;
+        assertEquals("Entrar", textoSaindoDaConta);
     }//10
 
 
@@ -120,4 +151,3 @@ public class FluxoTest {
 }
 
 
-//validações

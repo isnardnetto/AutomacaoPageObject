@@ -43,6 +43,12 @@ public class PaginaDeCadastro extends BasePage {
         return this;
     }
 
+    public PaginaDeLogin clicarNoBotaoCadastrarErro(){
+        navegar.findElement(By.className("btn-primary")).click();
+
+        return new PaginaDeLogin(navegar);
+    }
+
 }
 
 
