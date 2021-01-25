@@ -1,3 +1,4 @@
+![64b37cbea5da3124616e1452cb4b0251](https://user-images.githubusercontent.com/46537743/105705315-d002bd80-5eee-11eb-999a-7c85680664d4.png)
 # BVTesteSenhorBarriga
 
 Esse projeto visa automatizar o site "https://srbarriga.herokuapp.com/login"
