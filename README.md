@@ -1,5 +1,7 @@
 
-# BVTesteSenhorBarriga
+![download](https://user-images.githubusercontent.com/46537743/105705999-bf9f1280-5eef-11eb-9b0d-786df6b3320d.jpg)
+
+# TestSenhorBarriga
 
 Esse projeto visa automatizar o site "https://srbarriga.herokuapp.com/login"
 
