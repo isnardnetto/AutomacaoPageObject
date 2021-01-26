@@ -31,7 +31,7 @@ public class FluxoTest {
     } //1
 
     @Test
-    public void testNovoUsuarioJaCadastrado(){ // deu errado no assert
+    public void testNovoUsuarioJaCadastrado(){ 
         String ValidacaoUsuarioJaUltilizado = new PaginaDeLogin(navegar)
                 .clicarNoBotaoNovoUsuario()
                 .cadastroResumido("Lukab","doncicd@gmail.com","12345")

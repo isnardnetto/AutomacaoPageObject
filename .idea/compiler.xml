@@ -7,8 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="BvTest" />
-        <module name="BVTesteSenhorBarriga-main" />
         <module name="AutomacaoPageObject" />
+        <module name="AutomacaoSrBarriga" />
+        <module name="BVTesteSenhorBarriga-main" />
       </profile>
     </annotationProcessing>
   </component>
