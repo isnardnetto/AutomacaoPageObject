@@ -1,0 +1,4 @@
+testNovoUsuario,nome,email,senha,Duration(ms),Duration(ms)
+"",isnard,isnardTest@gmail.com,12345,2054.0,2054.0
+"",isnard2,isnardTest2@gmail.com,54321,1114.0,1114.0
+"",isnard3,isnardTest3@gmail.com,12345,1753.0,1753.0

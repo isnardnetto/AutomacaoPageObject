@@ -1,8 +1,12 @@
 package tests;
 
+import org.easetech.easytest.annotation.DataLoader;
+import org.easetech.easytest.annotation.Param;
+import org.easetech.easytest.runner.DataDrivenTestRunner;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +15,8 @@ import suporte.Web;
 
 import static org.junit.Assert.*;
 
+@RunWith(DataDrivenTestRunner.class)
+@DataLoader(filePaths = "FluxoTestData.csv" )
 public class FluxoTest {
     private WebDriver navegar;
 
@@ -20,10 +26,10 @@ public class FluxoTest {
         }
 
     @Test
-    public void testNovoUsuario() {
+    public void testNovoUsuario(@Param(name="nome")String nome , @Param(name = "email")String email , @Param(name = "senha")String senha) {
            String validacaoNovoUsuario = new PaginaDeLogin(navegar) // colocar a primeira pagina da aplicação
                     .clicarNoBotaoNovoUsuario()
-                    .cadastroResumido("oladipuyooHYoo","oladipooHYHoooo@gmail.com","12345")
+                    .cadastroResumido(nome,email,senha)
                     .clicarNoBotaoCadastrarSucesso()
                     .ValidacaoTextoTesteNovoUsuario();
 
@@ -146,7 +152,7 @@ public class FluxoTest {
 
     @After
     public void tearDown(){
-        navegar.quit();
+        //navegar.quit();
     }
 }
 
