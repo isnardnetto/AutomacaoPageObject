@@ -89,13 +89,13 @@ public class FluxoTest {
     }
 
     @Test
-    public void ExcluirContasEmAberto(){//problema nesse
+    public void ExcluirContasEmAberto(){
         String ValidarContaEmUso  = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gsw")
                 .clicarNoBotaoEntrar()
                 .AbrirConta()
                 .clicarListarConta()
-                .excluirContaEmUso()
+                .excluirContaEmUso()//problemas aqui!!!
                 .ValidarTextoContaEmUso()
                 ;
 
@@ -157,7 +157,7 @@ public class FluxoTest {
 
     @After
     public void tearDown(){
-        navegar.quit();
+        //navegar.quit();
     }
 }
 

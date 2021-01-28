@@ -123,7 +123,7 @@ public class InformacoesUsuarioTest {
     }
 
     @Test
-    public void contasExcluirContasEmAberto (){
+    public void contasExcluirContasEmAberto (){ //problema do PO desse
         //----------------------------------------- 6
         //login com usuario cadastrado
         navegador.findElement(By.id("email")).sendKeys("Curry30@gmail.com");
@@ -133,7 +133,7 @@ public class InformacoesUsuarioTest {
         //excluir uma conta em uso
         navegador.findElement(By.className("dropdown-toggle")).click();
         navegador.findElement(By.linkText("Listar")).click();
-        WebElement alert = navegador.findElement(By.xpath("//tbody/tr[4]/td[2]/a[2]/span[1]"));
+        WebElement alert = navegador.findElement(By.xpath("//*[@id=\"tabelaContas\"]/tbody/tr/td[2]/a[2]/span"));////tbody/tr[4]/td[2]/a[2]/span[1]
         alert.click();
 
         //Validando mensagem "Conta em uso na movimentações"
@@ -260,7 +260,7 @@ public class InformacoesUsuarioTest {
     }
         @After
     public void tearDown(){
-        //navegador.quit();
+       // navegador.quit();
     }
 
 }

@@ -12,7 +12,7 @@ public class ListarConta extends BasePage {
     }
 
     public ContasListadas excluirContaEmUso(){
-            WebElement alert = navegar.findElement(By.xpath("//tbody/tr[4]/td[2]/a[2]/span[1]"));//melhorar seletor
+            WebElement alert = navegar.findElement(By.xpath("//*[@id=\"tabelaContas\"]/tbody/tr/td[2]/a[2]/span"));//melhorar seletor
             alert.click();
 
             return new ContasListadas(navegar);
