@@ -26,15 +26,20 @@ public class FluxoTest {
         }
 
     @Test
-    public void testNovoUsuario(@Param(name="nome")String nome , @Param(name = "email")String email , @Param(name = "senha")String senha) {
-           String validacaoNovoUsuario = new PaginaDeLogin(navegar) // colocar a primeira pagina da aplicação
+    public void testNovoUsuario(
+            @Param(name="nome")String nome,
+            @Param(name="email")String email ,
+            @Param(name="senha")String senha,
+            @Param(name="mensagemEperada")String mensagemEperada
+    ) {
+           String validacaoNovoUsuario = new PaginaDeLogin(navegar)
                     .clicarNoBotaoNovoUsuario()
                     .cadastroResumido(nome,email,senha)
                     .clicarNoBotaoCadastrarSucesso()
                     .ValidacaoTextoTesteNovoUsuario();
 
-           assertEquals("Usuário inserido com sucesso",validacaoNovoUsuario);
-    } //1
+           assertEquals(mensagemEperada,validacaoNovoUsuario);
+    }
 
     @Test
     public void testNovoUsuarioJaCadastrado(){
@@ -45,8 +50,8 @@ public class FluxoTest {
                 .ValidacaoTextoTesteUsuarioJaUltilizado();
 
         assertEquals("Endereço de email já utilizado",ValidacaoUsuarioJaUltilizado);
-                ;
-    }//2
+
+    }
 
     @Test
     public void testLogin(){
@@ -57,7 +62,7 @@ public class FluxoTest {
 
         assertEquals("Bem vindo, curry!",validandoUmUsuarioCadastrado);
 
-    }//3
+    }
 
     @Test
     public void testLoginErro(){
@@ -67,7 +72,7 @@ public class FluxoTest {
                 .valindandoSenhaErrada();
 
         assertEquals("Problemas com o login do usuário",senhaErrada);
-    }//4
+    }
 
     @Test
     public void contasContaDuplicada (){
@@ -81,10 +86,10 @@ public class FluxoTest {
                 .valindandoContaDuplicada();
 
         assertEquals("Já existe uma conta com esse nome!",ContaDuplicada);
-    }//5
+    }
 
     @Test
-    public void ExcluirContasEmAberto(){ //resolver depois problema na conta usada
+    public void ExcluirContasEmAberto(){//problema nesse
         String ValidarContaEmUso  = new PaginaDeLogin(navegar)
                 .loginResumida("curry30@gmail.com","gsw")
                 .clicarNoBotaoEntrar()
@@ -95,7 +100,7 @@ public class FluxoTest {
                 ;
 
         assertEquals("Conta em uso na movimentações", ValidarContaEmUso);
-    }//6
+    }
 
     @Test
     public void CriarMovimetacaoSemDataDePagamentoEmovimentacao() {
@@ -111,7 +116,7 @@ public class FluxoTest {
 
         assertEquals("Data do pagamento é obrigatório", SemDataMovimentacao);
 
-    }//7
+    }
 
     @Test
     public void CriarMovimetacaoDataInvalida() {
@@ -124,7 +129,7 @@ public class FluxoTest {
                 ;
 
         assertEquals("Data do pagamento inválida (DD/MM/YYYY)", movimetacaoDataInvalida);
-    }//8
+    }
 
     @Test
     public void escolhendoUmaContaComDataFutura () {
@@ -136,7 +141,7 @@ public class FluxoTest {
                 .validandoTextoEscolhendoUmaContaComDataFutura()
         ;
         assertEquals("Data da Movimentação deve ser menor ou igual à data atual", EscolhendoUmaContaFutura);
-    }//9
+    }
 
     @Test
     public void SaindoDaConta () {
@@ -147,12 +152,12 @@ public class FluxoTest {
                 .ValidandoTextoSaindoDaConta()
                 ;
         assertEquals("Entrar", textoSaindoDaConta);
-    }//10
+    }
 
 
     @After
     public void tearDown(){
-        //navegar.quit();
+        navegar.quit();
     }
 }
 
